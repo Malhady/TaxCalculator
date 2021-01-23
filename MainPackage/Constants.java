@@ -6,6 +6,8 @@ public class Constants {
         throw new IllegalStateException("Utility class");
       }
 
+
+    //FederalTaxCalculations Class Constants
     //Upper bounds for each Federal Single Bracket 
     public static final double FIRSTBRACKETSINGLE  = 9875;
     public static final double SECONDBRACKETSINGLE = 40125;
@@ -39,4 +41,13 @@ public class Constants {
     public static final double SIXTHBRACKETMARRIEDOWED  = 167307;
 
 
+    //FicaTaxCalculations Constants
+    //Max FICA Tax at 7.65% rate
+    public static final double FICA_TAX_HIGHRATE_LIMIT   = 137700;
+    public static final double FICA_TAX_HIGHRATE_PERCENT = 0.0765;
+    public static final double FICA_TAX_HIGHRATE_LIMIT_PAID = 10534;
+    public static final double FICA_TAX_LOWRATE_PERCENT = 0.0145;
+    public static final double FICA_TAX_PAYROLL_RATE = 0.0235;
+    public static final double FICA_TAX_PAYROLL_LIMIT = 250000;
+    public static final double FICA_PAYROLL_TAX_BETWEEN = 903;
 }
