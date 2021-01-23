@@ -6,46 +6,95 @@
 package MainPackage;
 
 public class FederalTaxCalculations{
-    private double federalTaxAmount = 0.0;
-
+    
     //this method seperates filing status type depending on input given by user
     public double calculateFederalTax() {   
         UserVariables person = new UserVariables();
         if(person.getFilingStatus().equals("Single")){
-            federalTaxesSingleStatus(person);
+            return (federalTaxesSingleStatus(person));
+            
+        }else{
+            federalTaxesMarriedStatus(person);
+            return(federalTaxesMarriedStatus(person));
         }    
-
-        return federalTaxAmount;
     }
-    
-    //this method will caclulate the federal liability for a 'single' filer
+
+    // This method will caclulate the federal liability for a 'single' filer
     private double federalTaxesSingleStatus(UserVariables person) {
-        double amountOwed=0.0;
-        double tempIncome = 0.0;
-        double[] amountPreviousTaxBracket = new double[6];
+        double federalTaxOwedAmount = -1;
+        //due to Standard Deduction, -12400 is auto taken out
+        double deductedIncome = person.getIncome() - person.getStandardDeduction();
 
+        //Can not use a switch as varialbes are doubles
+        //And switch statemnts are for conditionals not
+        //calcualtions such as # is inbetween X and Y
+            if(deductedIncome <= Constants.FIRSTBRACKETSINGLE) {
+                federalTaxOwedAmount = 0;
+            }
+            else if(deductedIncome <= Constants.SECONDBRACKETSINGLE && deductedIncome >= Constants.FIRSTBRACKETSINGLE){
+                federalTaxOwedAmount = ((Constants.FIRSTBRACKETSINGLEOWED)
+                        + ((deductedIncome) - Constants.FIRSTBRACKETSINGLE) * .12);
+            }
 
-        //Logic is incorrect here
-            if(person.getIncome() >= 12400){
-                amountOwed = 0.0;
-                tempIncome = 12400;
-                amountPreviousTaxBracket[0] = 0;
+            else if(deductedIncome <= Constants.THIRDBRACKETSINGLE && deductedIncome >= Constants.SECONDBRACKETSINGLE){
+                federalTaxOwedAmount = ((Constants.SECONDBRACKETSINGLEOWED) 
+                        + ((deductedIncome - Constants.SECONDBRACKETSINGLE) * .22)); 
             }
-            if(person.getIncome() > 40125){
-                amountOwed = (person.getIncome() - tempIncome) *.12;
-                amountPreviousTaxBracket[1] = amountOwed;
-                tempIncome = 40125;
+            else if(deductedIncome <= Constants.FOURTHBRACKETSINGLE && deductedIncome >= Constants.THIRDBRACKETSINGLE){
+                federalTaxOwedAmount = ((Constants.THIRDBRACKETSINGLEOWED)
+                         + ((deductedIncome - Constants.THIRDBRACKETSINGLE) * .24)); 
             }
-            if(person.getIncome() > 85525){
-                System.out.println(amountOwed);
-                amountOwed = (person.getIncome() - tempIncome) *.22 + amountPreviousTaxBracket[1];
-                System.out.println(amountOwed);
-                amountPreviousTaxBracket[2] = amountOwed;
-                tempIncome = 85525;
+            else if(deductedIncome <= Constants.FIFTHBRACKETSINGLE && deductedIncome >= Constants.FOURTHBRACKETSINGLE){
+                federalTaxOwedAmount = ((Constants.FOURTHBRACKETSINGLEOWED) 
+                        + ((deductedIncome - Constants.FOURTHBRACKETSINGLE) * .32)); 
             }
-        
-        return amountOwed;
+            else if(deductedIncome <= Constants.SIXTHBRACKETSINGLE && deductedIncome >= Constants.FIFTHBRACKETSINGLE){
+                federalTaxOwedAmount = ((Constants.FIFTHBRACKETSINGLEOWED) 
+                        + ((deductedIncome - Constants.FIFTHBRACKETSINGLE) * .35)); 
+            }
+            else if(deductedIncome >= Constants.SIXTHBRACKETSINGLE){
+                federalTaxOwedAmount = ((Constants.SIXTHBRACKETSINGLEOWED) 
+                        + ((deductedIncome - Constants.SIXTHBRACKETSINGLE) * .37)); 
+            }
+        return federalTaxOwedAmount;
     }
 
+
+
+    private double federalTaxesMarriedStatus(UserVariables person) {
+        double federalTaxOwedAmount = -1;
+        double deductedIncome = person.getIncome() - person.getStandardDeduction();
+
+        //the formula to get the previous tax brackets full tax liability
+        //is to subtract the higherbar - lowerbar * the % taxed, then add to the previous
+        if(deductedIncome <= Constants.FIRSTBRACKETMARRIED){
+            federalTaxOwedAmount = 0.0;
+        }
+        else if(deductedIncome <= Constants.SECONDBRACKETMARRIED && deductedIncome >= Constants.FIRSTBRACKETMARRIED){
+            federalTaxOwedAmount = ((Constants.FIRSTBRACKETMARRIEDOWED) 
+                        + ((deductedIncome) - Constants.FIRSTBRACKETMARRIED) * .12);
+        }
+        else if(deductedIncome <= Constants.THIRDBRACKETMARRIED && deductedIncome >= Constants.SECONDBRACKETMARRIED){
+            federalTaxOwedAmount = ((Constants.SECONDBRACKETMARRIEDOWED) 
+                        + ((deductedIncome - Constants.SECONDBRACKETMARRIED) * .22)); 
+        }
+        else if(deductedIncome <= Constants.FOURTHBRACKETMARRIED && deductedIncome >= Constants.THIRDBRACKETMARRIED){
+            federalTaxOwedAmount = ((Constants.THIRDBRACKETMARRIEDOWED) 
+                        + ((deductedIncome - Constants.THIRDBRACKETMARRIED) * .24)); 
+        }
+        else if(deductedIncome <= Constants.FIFTHBRACKETMARRIED && deductedIncome >= Constants.FOURTHBRACKETMARRIED){
+            federalTaxOwedAmount = ((Constants.FOURTHBRACKETMARRIEDOWED) 
+                        + ((deductedIncome - Constants.FOURTHBRACKETMARRIED) * .32)); 
+        }
+        else if(deductedIncome <= Constants.SIXTHBRACKETMARRIED && deductedIncome >= Constants.FIFTHBRACKETMARRIED){
+            federalTaxOwedAmount = ((Constants.FIFTHBRACKETMARRIEDOWED) 
+                        + ((deductedIncome - Constants.FIFTHBRACKETMARRIED) * .35)); 
+        }
+        else if(deductedIncome >= Constants.SIXTHBRACKETMARRIED){
+            federalTaxOwedAmount = ((Constants.SIXTHBRACKETMARRIEDOWED) 
+                        + ((deductedIncome - Constants.SIXTHBRACKETMARRIED) * .37)); 
+        }
+        return federalTaxOwedAmount;
+    }
 
 }
