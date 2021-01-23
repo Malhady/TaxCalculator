@@ -43,11 +43,19 @@ public class Constants {
 
     //FicaTaxCalculations Constants
     //Max FICA Tax at 7.65% rate
-    public static final double FICA_TAX_HIGHRATE_LIMIT   = 137700;
-    public static final double FICA_TAX_HIGHRATE_PERCENT = 0.0765;
-    public static final double FICA_TAX_HIGHRATE_LIMIT_PAID = 10534;
-    public static final double FICA_TAX_LOWRATE_PERCENT = 0.0145;
-    public static final double FICA_TAX_PAYROLL_RATE = 0.0235;
-    public static final double FICA_TAX_PAYROLL_LIMIT = 250000;
-    public static final double FICA_PAYROLL_TAX_BETWEEN = 903;
+    public static final double FICA_TAX_HIGHRATE_LIMIT          = 137700;
+    public static final double FICA_TAX_HIGHRATE_PERCENT        = 0.0765;
+    public static final double FICA_TAX_HIGHRATE_LIMIT_PAID     = 10534;
+    public static final double FICA_TAX_LOWRATE_PERCENT         = 0.0145;
+    public static final double FICA_TAX_PAYROLL_RATE            = 0.0235;
+    public static final double FICA_TAX_PAYROLL_LIMIT_SINGLE    = 200000;
+    public static final double FICA_TAX_PAYROLL_LIMIT_MARRIED   = 250000;
+    public static final double FICA_PAYROLL_TAX_BETWEEN         = 903;
+    public static final double FICA_PAYROLL_TAX_BETWEEN_MARRIED = 1628;
+
+
+    //MAStateTax Constants
+    public static final double MA_STATE_TAX_MINNIMUM_SINGLE = 4400;
+    public static final double MA_STATE_TAX_RATE = 0.05;
+    public static final double MA_STATE_TAX_MINNIMUM_MARRIED = 8800;
 }

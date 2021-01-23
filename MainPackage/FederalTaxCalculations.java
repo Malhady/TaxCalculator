@@ -29,7 +29,7 @@ public class FederalTaxCalculations{
         //And switch statemnts are for conditionals not
         //calcualtions such as # is inbetween X and Y
             if(deductedIncome <= Constants.FIRSTBRACKETSINGLE) {
-                federalTaxOwedAmount = 0;
+                federalTaxOwedAmount = (deductedIncome * .10);
             }
             else if(deductedIncome <= Constants.SECONDBRACKETSINGLE && deductedIncome >= Constants.FIRSTBRACKETSINGLE){
                 federalTaxOwedAmount = ((Constants.FIRSTBRACKETSINGLEOWED)
@@ -56,6 +56,10 @@ public class FederalTaxCalculations{
                 federalTaxOwedAmount = ((Constants.SIXTHBRACKETSINGLEOWED) 
                         + ((deductedIncome - Constants.SIXTHBRACKETSINGLE) * .37)); 
             }
+
+            if(federalTaxOwedAmount <=0){
+                federalTaxOwedAmount =0;
+            }
         return federalTaxOwedAmount;
     }
 
@@ -68,7 +72,7 @@ public class FederalTaxCalculations{
         //the formula to get the previous tax brackets full tax liability
         //is to subtract the higherbar - lowerbar * the % taxed, then add to the previous
         if(deductedIncome <= Constants.FIRSTBRACKETMARRIED){
-            federalTaxOwedAmount = 0.0;
+            federalTaxOwedAmount = (deductedIncome * .10);
         }
         else if(deductedIncome <= Constants.SECONDBRACKETMARRIED && deductedIncome >= Constants.FIRSTBRACKETMARRIED){
             federalTaxOwedAmount = ((Constants.FIRSTBRACKETMARRIEDOWED) 
@@ -93,6 +97,10 @@ public class FederalTaxCalculations{
         else if(deductedIncome >= Constants.SIXTHBRACKETMARRIED){
             federalTaxOwedAmount = ((Constants.SIXTHBRACKETMARRIEDOWED) 
                         + ((deductedIncome - Constants.SIXTHBRACKETMARRIED) * .37)); 
+        }
+
+        if(federalTaxOwedAmount <=0){
+            federalTaxOwedAmount =0;
         }
         return federalTaxOwedAmount;
     }

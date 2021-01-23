@@ -13,35 +13,31 @@ public class Main {
         //This class holds the getter/setter methods for the user input
         UserVariables userDetailsSingle = new UserVariables();
         UserVariables userDetailsMarried = new UserVariables();
-        double userIncome = 159666.00;
+
+        double userIncome = 4000.00;
 
         
         //temp user inputs
         String filingStatus = "Single";
-        double standardDeduction = 12400;
+        double standardDeduction = 24800;
         userDetailsSingle.setIncome(userIncome);
         userDetailsSingle.setFilingStatus(filingStatus);
-        userDetailsSingle.setStandardDeduction(standardDeduction);
-        
-        /*
-        String filingStatusMarried = "Married";
-        double standardDeductionMarried = 24800;
-        userDetailsMarried.setIncome(userIncome);
-        userDetailsMarried.setFilingStatus(filingStatusMarried);
-        userDetailsMarried.setStandardDeduction(standardDeductionMarried);
-        */
+        userDetailsSingle.setStandardDeduction(standardDeduction); 
         //This will call the federal tax calculator depending on the inputs given
         //and return a double of the federal taxes owed
         
-        /*
+        System.out.println(userIncome);
         FederalTaxCalculations federalTax = new FederalTaxCalculations();
         double federalOwed = federalTax.calculateFederalTax();
-        System.out.println(federalOwed);
-        */
 
         FicaTaxCalculations ficaTax = new FicaTaxCalculations();
         double ficaTaxOwed = ficaTax.calculateFicaTax();
-        System.out.println(ficaTaxOwed);
+
+        MAStateTax maStateTax = new MAStateTax();
+        double maStateTaxOwed = maStateTax.calcMAStateTax();
+
+        double totalTaxesOwed = maStateTaxOwed + ficaTaxOwed + federalOwed;
+        System.out.println(totalTaxesOwed);
     }
     
 }
