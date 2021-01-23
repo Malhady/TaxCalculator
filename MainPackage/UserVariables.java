@@ -8,21 +8,20 @@ package MainPackage;
 
 public class UserVariables {
     private static Double userIncome; 
-    private static Double itemizedDeductions; 
     private static String filingStatus;
-
+    private static Double standardDeduction;
 
     //Getter and setter methods used for encapsulation of the private static variables
-    public static void setIncome(double userIncome){
+    public static void setIncome(Double userIncome){
         UserVariables.userIncome = userIncome; 
     }
-    
-    public static void setItemizedDeductions(double itemizedDeductions){
-        UserVariables.itemizedDeductions = itemizedDeductions;
-    }
-    
+      
     public static void setFilingStatus(String filingStatus){
         UserVariables.filingStatus = filingStatus;
+    }
+
+    public static void setStandardDeduction(Double standardDeduction){
+        UserVariables.standardDeduction = standardDeduction;
     }
     
     
@@ -30,12 +29,13 @@ public class UserVariables {
         return userIncome;
     }
     
-    public double getItemizedDeductions(){
-        return itemizedDeductions;
-    }
     
     public String getFilingStatus(){
         return filingStatus;
+    }
+
+    public Double getStandardDeduction(){
+        return standardDeduction;
     }
 }
 
