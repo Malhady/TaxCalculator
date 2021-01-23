@@ -14,7 +14,7 @@ public class Main {
         UserVariables userDetails = new UserVariables();
 
         //temp user inputs
-        double userIncome = 90000.00;
+        double userIncome = 10000000.00;
         String filingStatus = "Single";
         double itemizedDeductions = 1000.00;
         userDetails.setIncome(userIncome);
@@ -25,6 +25,7 @@ public class Main {
         //and return a double of the federal taxes owed
         FederalTaxCalculations federalTax = new FederalTaxCalculations();
         double federalOwned = federalTax.calculateFederalTax();
+        System.out.println(federalOwned);
     }
     
 }
