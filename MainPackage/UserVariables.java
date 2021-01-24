@@ -4,6 +4,7 @@
 *
 */
 
+package MainPackage;
 
 public class UserVariables {
     private static Double userIncome; 

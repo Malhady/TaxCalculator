@@ -3,6 +3,7 @@
 * This class will be used to calculate federal tax
 *
 */
+package MainPackage;
 
 public class FederalTaxCalculations{
     
