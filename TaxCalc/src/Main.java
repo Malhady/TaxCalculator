@@ -3,11 +3,10 @@
 * This class will be used to run the main program
 *
 */
-package MainPackage;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void runProgram(){
 
         //The userDetails object is being pulled from the UserVariables class
         //This class holds the getter/setter methods for the user input

@@ -1,4 +1,3 @@
-package MainPackage;
 
 public class Constants {
     
