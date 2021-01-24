@@ -10,6 +10,7 @@ public class FederalTaxCalculations{
     //this method seperates filing status type depending on input given by user
     public double calculateFederalTax() {   
         UserVariables person = new UserVariables();
+        //runs the single or the married filing status
         if(person.getFilingStatus().equals("Single")){
             return (federalTaxesSingleStatus(person));
             
@@ -31,11 +32,14 @@ public class FederalTaxCalculations{
             if(deductedIncome <= Constants.FIRSTBRACKETSINGLE) {
                 federalTaxOwedAmount = (deductedIncome * .10);
             }
+            //checks if the amount their deductedIncome total is between which bracket
+            //If it is between the bracket it adds the previous bracket's tax total
+            //then it subtracts their amount from the second bracket and multiplies it by the percent taxed
+            //all brackets follow the same order
             else if(deductedIncome <= Constants.SECONDBRACKETSINGLE && deductedIncome >= Constants.FIRSTBRACKETSINGLE){
                 federalTaxOwedAmount = ((Constants.FIRSTBRACKETSINGLEOWED)
                         + ((deductedIncome) - Constants.FIRSTBRACKETSINGLE) * .12);
             }
-
             else if(deductedIncome <= Constants.THIRDBRACKETSINGLE && deductedIncome >= Constants.SECONDBRACKETSINGLE){
                 federalTaxOwedAmount = ((Constants.SECONDBRACKETSINGLEOWED) 
                         + ((deductedIncome - Constants.SECONDBRACKETSINGLE) * .22)); 
@@ -44,6 +48,11 @@ public class FederalTaxCalculations{
                 federalTaxOwedAmount = ((Constants.THIRDBRACKETSINGLEOWED)
                          + ((deductedIncome - Constants.THIRDBRACKETSINGLE) * .24)); 
             }
+            //EX:
+            //if statements checks if between 207350 and 163300. If the income is 180000 then it will run this if statement
+            //Inside the if statement it will add the total tax amount from all the brackets up to 163300
+            //Deducted income is then subtracted by the lowest bracket which leaves whatever is above the lowest bracket
+            //that amount is then multiplied by the percentage. They are all added then to show the total taxed amount
             else if(deductedIncome <= Constants.FIFTHBRACKETSINGLE && deductedIncome >= Constants.FOURTHBRACKETSINGLE){
                 federalTaxOwedAmount = ((Constants.FOURTHBRACKETSINGLEOWED) 
                         + ((deductedIncome - Constants.FOURTHBRACKETSINGLE) * .32)); 

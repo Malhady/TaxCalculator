@@ -5,39 +5,37 @@
 */
 package MainPackage;
 
+
 public class Main {
 
     public static void main(String[] args) {
 
-        //The userDetails object is being pulled from the UserVariables class
-        //This class holds the getter/setter methods for the user input
-        UserVariables userDetailsSingle = new UserVariables();
-        UserVariables userDetailsMarried = new UserVariables();
-
-        double userIncome = 4000.00;
-
+        /*
+        Double userIncome = input.nextDouble();
+        System.out.println();
+        System.out.println("Enter your filing status (s: single | m: married): ");
+        String filingStatus = input.nextLine();
+        System.out.println();
         
-        //temp user inputs
-        String filingStatus = "Single";
-        double standardDeduction = 24800;
-        userDetailsSingle.setIncome(userIncome);
-        userDetailsSingle.setFilingStatus(filingStatus);
-        userDetailsSingle.setStandardDeduction(standardDeduction); 
-        //This will call the federal tax calculator depending on the inputs given
-        //and return a double of the federal taxes owed
+        UserVariables.setIncome(userIncome);
+        UserVariables.setFilingStatus(filingStatus);
+        */
+        UserVariables.setIncome(150000.0);
+        UserVariables.setFilingStatus("Single");
+        UserVariables.setStandardDeduction(12400.0);
         
-        System.out.println(userIncome);
         FederalTaxCalculations federalTax = new FederalTaxCalculations();
         double federalOwed = federalTax.calculateFederalTax();
-
+            System.out.println("Federal Taxes Owed: " + federalOwed);
         FicaTaxCalculations ficaTax = new FicaTaxCalculations();
         double ficaTaxOwed = ficaTax.calculateFicaTax();
-
+            System.out.println("FICA Taxes Owed: " + ficaTaxOwed);
         MAStateTax maStateTax = new MAStateTax();
         double maStateTaxOwed = maStateTax.calcMAStateTax();
-
+            System.out.println("Mass State Tax: " + maStateTaxOwed);
         double totalTaxesOwed = maStateTaxOwed + ficaTaxOwed + federalOwed;
-        System.out.println(totalTaxesOwed);
+        System.out.println("Total Taxes Owed: " + totalTaxesOwed);
+
     }
     
 }
